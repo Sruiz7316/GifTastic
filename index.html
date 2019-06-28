@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,64 +8,22 @@
     <title>GifTastic</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-  <div class="container">
-    <div class="topics"></div>
-    <form id="title-form">
-        <label for="title-input">Search for a Title</label>
-        <input type="text" id="title-input">
-        <br>
-        <input id="find-title" type="submit" value="Title Search">
-    </form>
+    <div class="container">
+        <div class="topics"></div>
+        <form id="title-form">
+            <label for="title-input">Search for a Title</label>
+            <input type="text" id="title-input">
+            <br>
+            <input id="find-title" type="submit" value="Title Search">
+        </form>
 
-    <div class="images"></div>
+        <div class="images"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-    var topics = ['book','notebook','library','cat'];
-    $(document).ready(function(){
-
-        for (var i = 0; i < topics.length; i++) {
-            var topic = topics[i];
-            var html = '<button>' + topic + '</button>';
-            $('.topics').append(html);
-        }
-        $("#find-title").on("click", function(event) {
-            event.preventDefault();
-            var title = $("#title-input").val();
-            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + title + "&apikey=KI4kpMtwsELgjUE8hd5Z4Kn2XZG5QDM8&limit=10";
-            $.ajax({ //Async request to giphy API URL 10micro sec
-                url: queryURL,
-                method: "GET"
-            }).then(function(response) {
-                console.log(response);
-                for (var j = 0; j < response.data.length; j++) {
-                    var current_item = response.data[j];
-                    var rating = current_item.rating;
-                    var image_still_source = current_item.images.fixed_height_small_still.url;
-                    var image_animate_source = current_item.images.fixed_height_small.url;
-                    var ht = '<img class="image-item" src="'+ image_still_source +'" data-still-url="'+ image_still_source +'" data-animate-url="'+ image_animate_source +'" data-isstill="yes" >';
-                    $('.images').append(ht);
-                }
-            });
-        
-        }); 
-        $(".images").on("click",".image-item",function(){
-            var isstill = $(this).data('isstill');
-            var still_url = $(this).data('still-url');
-            var animate_url = $(this).data('animate-url');
-            if(isstill=="yes"){
-                $(this).attr("src",animate_url);
-                $(this).data('isstill','no');
-            }else{
-                $(this).attr("src",still_url);
-                $(this).data('isstill','yes');
-            }
-        });
-    })
-    
-    
-  </script>
- </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/javascript/main.js"></script>
+    </div>
 </body>
+
 </html>
