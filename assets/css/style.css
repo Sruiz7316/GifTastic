@@ -1,0 +1,19 @@
+button {
+    background-color: teal;
+    color: white;
+}
+
+#find-title {
+    background-color: teal;
+    color: white;
+}
+
+.images {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 20px;
+}
+
+.image-item {
+    padding: 5px;
+}
